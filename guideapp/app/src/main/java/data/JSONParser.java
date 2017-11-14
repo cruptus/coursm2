@@ -47,24 +47,47 @@ public class JSONParser implements Parser {
 
     ////////////////////////////////////////////////////////
     ///
+    /// TEST
+    ///
+
+    /// PRIVATE
+
+    private boolean isReaderNull () {
+        return m_reader.equals(null);
+    }
+
+    ///
+    ///
+    ///
+    ////////////////////////////////////////////////////////
+
+
+    ////////////////////////////////////////////////////////
+    ///
     /// GETTERS
     ///
 
     /// PRIVATE
     private String getString (String key) {
-        String str;
+        String str = "";
+
+        if(isReaderNull()) return str;
 
         try {
             str = m_reader.getString(key);
         }
         catch (JSONException e) {
-            str = "";
+            // Display errors
         }
 
         return str;
     }
 
     /// PUBLIC
+
+    public String getJSONContent () {
+        return m_data;
+    }
 
     public String getTitle () {
        return this.getString("title");
