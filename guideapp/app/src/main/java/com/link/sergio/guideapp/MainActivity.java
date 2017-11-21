@@ -2,9 +2,8 @@ package com.link.sergio.guideapp;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,6 +11,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import java.util.List;
+import data.DataModel;
+import data.GetItemsAsync;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
 {
@@ -23,6 +26,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //FIXME: Remove this
+        new GetItemsAsync(new GetItemsAsync.ItemsListener()
+        {
+            @Override
+            public void itemsRetrieved(List<DataModel> items)
+            {
+
+            }
+
+            @Override
+            public void itemsNotRetrived()
+            {
+
+            }
+        },"https://api.goodbarber.net/front/get_items/1389441/20807425/?local=1&category_index=0&geoloc=1&per_page=48").execute();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener()
