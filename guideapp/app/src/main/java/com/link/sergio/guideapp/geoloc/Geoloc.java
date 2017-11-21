@@ -148,6 +148,11 @@ public class Geoloc implements LocationListener {
     //
     //////////////////////////
 
+    //////////////////////////
+    //
+    //  Autres fonctions
+    //
+
     /**
      * Fonction startLocationManager
      *
@@ -157,15 +162,31 @@ public class Geoloc implements LocationListener {
      * @throws SecurityException
      */
     void startLocationManager(Context context) throws SecurityException {
-        lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        this.lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
         try {
-            if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0, this);
+            if (this.lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                this.lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0, this);
             }
-            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10000, 0, this);
+            this.lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10000, 0, this);
         }
         catch(SecurityException e) {
             throw e;
         }
     }
+
+    /**
+     * Fonction stopLocationManager
+     *
+     * Stop la mise &agrave; jour du LocationManager.
+     */
+    void stopLocationManager() {
+        if(this.lm != null) {
+            this.lm.removeUpdates(this);
+        }
+    }
+
+    //
+    //
+    //
+    //////////////////////////
 }
