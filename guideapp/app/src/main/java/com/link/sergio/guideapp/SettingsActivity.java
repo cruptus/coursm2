@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RelativeLayout;
@@ -42,23 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
         flushCache.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog alertDialog = new AlertDialog.Builder(SettingsActivity.this).create();
-                alertDialog.setTitle("Alerte");
-                alertDialog.setMessage("Voulez-vous supprimer les caches ?");
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Annuler",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                                Toast.makeText(getApplicationContext(), "Vous-avez annuler !", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                deleteCache(getApplicationContext());
-                            }
-                        });
-                alertDialog.show();
+                createAlert("Alerte", "Voulez-vous supprimer les caches ?");
             }
         });
 
@@ -125,33 +110,27 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void createAlert(String title, String message) {
-        AlertDialog alertDialog = new AlertDialog.Builder(SettingsActivity.this).create();
-        alertDialog.setTitle(title);
-        alertDialog.setMessage(message);
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Annuler",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        Toast.makeText(getApplicationContext(), "Vous-avez annuler !", Toast.LENGTH_SHORT).show();
-                    }
-                });
-        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
-                new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        //
-                    }
-                });
-        alertDialog.show();
+        new AlertDialog.Builder(SettingsActivity.this)
+            .setTitle(title)
+            .setMessage(message)
+            .setNegativeButton(android.R.string.cancel, null)
+            .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                @Override public void onClick(DialogInterface dialog, int which) {
+                    deleteCache(getApplicationContext());
+                }
+            })
+            .create()
+            .show();
     }
 
-    public static void deleteCache(Context context) {
+    public void deleteCache(Context context) {
         try {
             File dir = context.getCacheDir();
             deleteDir(dir);
         } catch (Exception e) {}
     }
 
-    public static boolean deleteDir(File dir) {
+    public boolean deleteDir(File dir) {
         if (dir != null && dir.isDirectory()) {
             String[] children = dir.list();
             for (int i = 0; i < children.length; i++) {
@@ -160,6 +139,9 @@ public class SettingsActivity extends AppCompatActivity {
                     return false;
                 }
             }
+
+            Toast.makeText(SettingsActivity.this, "Le cache a été supprimer !", Toast.LENGTH_SHORT).show();
+
             return dir.delete();
         } else if(dir!= null && dir.isFile()) {
             return dir.delete();
