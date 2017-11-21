@@ -12,14 +12,6 @@ public class SettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ListView listView = (ListView) findViewById(R.id.list_settings);
-
-        String[] items = new String[]{
-                "Général information",
-                "Crédits",
-                "Contact support"
-        };
-
         setContentView(R.layout.activity_settings);
     }
 }
