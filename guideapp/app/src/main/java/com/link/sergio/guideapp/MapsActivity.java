@@ -37,10 +37,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        LatLng corte = new LatLng(42,9);
-        mMap.addMarker(new MarkerOptions().position(corte).title("Marker in Corte"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(corte));
+        LatLng markers[]=new LatLng[3];
+        markers[0]= new LatLng(42.3,9.15);
+        markers[1] = new LatLng(42.696749, 9.451948);
+        markers[2] = new LatLng(41.923488, 8.738971);
+        double lat=0, l=0;
+        for(int i=0;i < markers.length;i++) {
+            lat=lat+markers[i].latitude;
+            l=l+markers[i].longitude;
+        }
+        LatLng centermap= new LatLng(lat/markers.length,l/markers.length);
+        mMap.addMarker(new MarkerOptions().position(markers[0]).title("Marker in Corte"));
+        mMap.addMarker(new MarkerOptions().position(markers[1]).title("Marker in Bastia"));
+        mMap.addMarker(new MarkerOptions().position(markers[2]).title("Marker in Ajaccio"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(centermap,10));
     }
 }
