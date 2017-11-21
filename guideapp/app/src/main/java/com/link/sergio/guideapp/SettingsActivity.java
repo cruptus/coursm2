@@ -19,7 +19,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
 
 
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = this.getSharedPreferences("setting",Context.MODE_PRIVATE);
         String unite = sharedPref.getString("unite", null);
         if (unite != null) {
             if (unite.equals("mi")) {
@@ -46,7 +46,7 @@ public class SettingsActivity extends AppCompatActivity {
         final CheckBox checkboxEnKm = ( CheckBox ) findViewById( R.id.checkboxEnKm );
         final CheckBox checkboxEnMile = ( CheckBox ) findViewById( R.id.checkboxEnMile );
 
-        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences sharedPref = this.getSharedPreferences("setting",Context.MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPref.edit();
 
         checkboxEnKm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
