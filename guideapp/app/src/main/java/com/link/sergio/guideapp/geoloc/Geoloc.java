@@ -1,22 +1,29 @@
 package com.link.sergio.guideapp.geoloc;
 
+import android.content.Context;
 import android.location.*;
 import android.os.Bundle;
 
 /**
  * @author ARAUJO David
  *
- * Classe Geoloc permettant de récupérer les données de géolocalisation du téléphone utilisant l'application.
+ * Classe Geoloc permettant de r&eacute;cup&eacute;rer les donn&eacute;es de g&eacute;olocalisation du t&eacute;l&eacute;phone utilisant l'application.
  */
 
 public class Geoloc implements LocationListener {
 
+    private LocationManager lm = null;
     private Geoloc instance = null;
     private double latitude;
     private double longitude;
     private double altitude;
     private float  accuracy;
     private int    status;
+
+    //////////////////////////
+    //
+    //  Constructeur
+    //
 
     private Geoloc() {
         this.latitude  = 0;
@@ -26,17 +33,15 @@ public class Geoloc implements LocationListener {
         this.status    = 0;
     }
 
-    /**
-     * Fonction getInstance
-     *
-     * @return L'instance du singleton.
-     */
-    public Geoloc getInstance() {
-        if(this.instance == null) {
-            this.instance = new Geoloc();
-        }
-        return this.instance;
-    }
+    //
+    //
+    //
+    //////////////////////////
+
+    //////////////////////////
+    //
+    //  M&eacute;thodes de l'interface
+    //
 
     @Override
     public void onLocationChanged(Location location) {
@@ -61,10 +66,34 @@ public class Geoloc implements LocationListener {
 
     }
 
+    //
+    //
+    //
+    //////////////////////////
+
+    //////////////////////////
+    //
+    //  Getters
+    //
+
+    /**
+     * Fonction getInstance
+     *
+     * @return L'instance du singleton.
+     */
+    public Geoloc getInstance() {
+        if(this.instance == null) {
+            this.instance = new Geoloc();
+        }
+        return this.instance;
+    }
+
     /**
      * Fonction getLatitude
      *
-     * @return La latitude à laquelle se trouve le téléphone.
+     * @return La latitude &agrave; laquelle se trouve le t&eacute;l&eacute;phone.
+     *
+     * @see getLonLat()
      */
     public double getLatitude() {
         return latitude;
@@ -73,7 +102,9 @@ public class Geoloc implements LocationListener {
     /**
      * Fonction getLongitude
      *
-     * @return La longitude à laquelle se trouve le téléphone.
+     * @return La longitude &agrave; laquelle se trouve le t&eacute;l&eacute;phone.
+     *
+     * @see getLonLat()
      */
     public double getLongitude() {
         return longitude;
@@ -82,7 +113,7 @@ public class Geoloc implements LocationListener {
     /**
      * Fonction getAltitude
      *
-     * @return L'altitude à laquelle se trouve le téléphone.
+     * @return L'altitude &agrave; laquelle se trouve le t&eacute;l&eacute;phone.
      */
     public double getAltitude() {
         return altitude;
@@ -90,7 +121,8 @@ public class Geoloc implements LocationListener {
 
     /**
      * Fonction getAccuracy
-     * @return La précision de la mesure.
+     *
+     * @return La pr&eacute;cision de la mesure.
      */
     public float getAccuracy() {
         return accuracy;
@@ -107,11 +139,40 @@ public class Geoloc implements LocationListener {
 
     /**
      * Fonction getLonLat
-     * Les valeurs numériques de longitude et de latitude peuvent être obtenues avec les fonctions getLatitude() et getLongitude().
+     * Les valeurs num&eacute;riques de longitude et de latitude peuvent &ecirc;tre obtenues avec les fonctions getLatitude() et getLongitude().
      *
-     * @return La longitude et la atitude sous forme de texte au format JSON.
+     * @return La longitude et l'altitude sous forme de texte au format JSON.
+     *
+     * @see getLongitude()
+     * @see getLatitude()
      */
     public String getLonLat() {
         return "{lon:" + this.longitude + ",lat:" + this.latitude + "}";
+    }
+
+    //
+    //
+    //
+    //////////////////////////
+
+    /**
+     * Fonction startLocationManager
+     *
+     * D&eacute;marre la mise &agrave; jour du LocationManager.
+     *
+     * @param context Le context de l'application.
+     * @throws SecurityException
+     */
+    void startLocationManager(Context context) throws SecurityException {
+        lm = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+        try {
+            if (lm.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0, this);
+            }
+            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10000, 0, this);
+        }
+        catch(SecurityException e) {
+            throw e;
+        }
     }
 }
