@@ -84,8 +84,10 @@
                 android:src="@android:drawable/ic_dialog_info" />
         </RelativeLayout>
 
+
+
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textViewSettingsDistance"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif"
@@ -97,6 +99,62 @@
             android:paddingLeft="10dp"
             android:height="30sp"
             />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/background_setting_item"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewSettingsEnMile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:layout_centerVertical="true"
+                android:text="En Mile"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:paddingLeft="40dp"/>
+
+            <CheckBox
+                android:id="@+id/checkboxEnMile"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/background_setting_item"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textViewSettingsEnKm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif"
+                android:layout_centerVertical="true"
+                android:text="En kilomètres"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:paddingLeft="40dp"/>
+
+            <CheckBox
+                android:id="@+id/checkboxEnKm"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" />
+        </RelativeLayout>
+
+
+
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
