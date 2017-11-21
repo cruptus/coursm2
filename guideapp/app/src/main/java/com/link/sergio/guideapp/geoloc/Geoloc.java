@@ -11,11 +11,22 @@ import android.os.Bundle;
 
 public class Geoloc implements LocationListener {
 
+    private Geoloc instance = null;
     private double latitude;
     private double longitude;
     private double altitude;
     private float  accuracy;
     private int    status;
+
+    private Geoloc() {
+    }
+
+    public Geoloc getInstance() {
+        if(this.instance == null) {
+            this.instance = new Geoloc();
+        }
+        return this.instance;
+    }
 
     @Override
     public void onLocationChanged(Location location) {
