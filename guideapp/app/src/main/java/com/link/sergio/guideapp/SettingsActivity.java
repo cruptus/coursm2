@@ -20,9 +20,6 @@ public class SettingsActivity extends AppCompatActivity {
                 "Contact support"
         };
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                R.layout.activity_settings, items);
-        listView.setAdapter(adapter);
         setContentView(R.layout.activity_settings);
     }
 }
