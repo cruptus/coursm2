@@ -140,7 +140,7 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
 
-            Toast.makeText(SettingsActivity.this, "Le cache a été supprimer !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(SettingsActivity.this, "Le cache a été supprimé !", Toast.LENGTH_SHORT).show();
 
             return dir.delete();
         } else if(dir!= null && dir.isFile()) {
