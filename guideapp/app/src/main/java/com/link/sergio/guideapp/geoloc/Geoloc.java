@@ -19,6 +19,11 @@ public class Geoloc implements LocationListener {
     private int    status;
 
     private Geoloc() {
+        this.latitude  = 0;
+        this.longitude = 0;
+        this.altitude  = 0;
+        this.accuracy  = 0;
+        this.status    = 0;
     }
 
     /**
