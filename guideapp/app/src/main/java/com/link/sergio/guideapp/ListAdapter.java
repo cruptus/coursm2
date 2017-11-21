@@ -5,7 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -17,13 +20,15 @@ public class ListAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<String> ID;
+    ArrayList<String> Images;
     ArrayList<String> Titre;
     ArrayList<String> Distance;
     ArrayList<String> Description;
 
-    public ListAdapter(Context context,ArrayList<String> ID, ArrayList<String> titre, ArrayList<String> Distance, ArrayList<String> Description){
+    public ListAdapter(Context context,ArrayList<String> ID,ArrayList<String> images, ArrayList<String> titre, ArrayList<String> Distance, ArrayList<String> Description){
         this.context = context;
         this.ID = ID;
+        this.Images = images;
         this.Titre = titre;
         this.Description = Description;
         this.Distance = Distance;
@@ -58,6 +63,7 @@ public class ListAdapter extends BaseAdapter {
 
             holder = new Holder();
 
+            holder.images = (ImageView) convertView.findViewById(R.id.photo);
             holder.titre = (TextView) convertView.findViewById(R.id.PhotoTitre);
             holder.distance = (TextView) convertView.findViewById(R.id.PhotoDistance);
             holder.description = (TextView) convertView.findViewById(R.id.PhotoDescription);
@@ -69,6 +75,7 @@ public class ListAdapter extends BaseAdapter {
         }
 
         holder.titre.setText(Titre.get(position));
+        Picasso.with(context).load(Images.get(position)).into(holder.images);
         holder.distance.setText(Distance.get(position));
         holder.description.setText(Description.get(position));
 
@@ -76,6 +83,7 @@ public class ListAdapter extends BaseAdapter {
     }
 
     public class Holder{
+        ImageView images;
         TextView titre;
         TextView distance;
         TextView description;

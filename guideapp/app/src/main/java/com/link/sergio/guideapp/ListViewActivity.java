@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -25,12 +26,13 @@ import java.util.ArrayList;
  * Created by Mami on 21/11/2017.
  */
 
-public class ListViewActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
+public class ListViewActivity extends FragmentActivity implements NavigationView.OnNavigationItemSelectedListener
 {
 
     ListAdapter listAdapter;
     ListView listView;
     ArrayList<String> id;
+    ArrayList<String> images;
     ArrayList<String>  titre;
     ArrayList<String>  distance;
     ArrayList<String>  description;
@@ -43,8 +45,7 @@ public class ListViewActivity extends AppCompatActivity implements NavigationVie
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener()
@@ -56,10 +57,6 @@ public class ListViewActivity extends AppCompatActivity implements NavigationVie
             }
         });
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
@@ -102,8 +99,19 @@ public class ListViewActivity extends AppCompatActivity implements NavigationVie
         description.add("n'importe quoi 5");
         description.add("n'importe quoi 6");
         description.add("n'importe quoi 7");
-        numberoflist = 8;
 
+
+        images = new ArrayList<String>();
+        images.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-NigeRAbgmol-5arJ6Uj_0zxfwHMQv3xF6RdJlv-5oM7ViQrXMQ");
+        images.add("http://www.photos-a-la-con.fr/wp-content/uploads/2014/06/image-drole-pouf.jpg");
+        images.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQb35UVWJBjRvGxZ8paapm4G-4C5XFCIRIYyGlAjhVN_Ig1nSgwcg");
+        images.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqm9WcY304Pl0__izzal7yQ55P28nLYFijrFqKAzS5kIeqHywC");
+        images.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRa4sWlI2A2K3LHPRqOIkUC7Sw-m9NgnCFtPvGfXW4kLhFXf-fn");
+        images.add("https://pbs.twimg.com/profile_images/1079672697/image_drole_singe_baiser_400x400.jpg");
+        images.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzo3nVybagi8PQk4hokx3sktGH0cthTbISfGBBSVIu-udzdLKO");
+
+
+        numberoflist = 8;
         mySwipeRefreshLayout.setOnRefreshListener(
                 new SwipeRefreshLayout.OnRefreshListener() {
                     @Override
@@ -115,10 +123,11 @@ public class ListViewActivity extends AppCompatActivity implements NavigationVie
                                 mySwipeRefreshLayout.setRefreshing(false);
                                 Toast.makeText(ListViewActivity.this, " In Refresh...", Toast.LENGTH_LONG).show();
                                 id.add("8");
+                                images.add("https://i.ytimg.com/vi/bukzQC-Fne8/hqdefault.jpg");
                                 titre.add("Titre 8");
                                 distance.add("2658Km");
                                 description.add("n'importe quoi 8");
-                                listAdapter = new ListAdapter(ListViewActivity.this,id,titre,distance,description);
+                                listAdapter = new ListAdapter(ListViewActivity.this,id,images,titre,distance,description);
                                 listView.setAdapter(listAdapter);
                             }
                         },3000);
@@ -137,7 +146,7 @@ public class ListViewActivity extends AppCompatActivity implements NavigationVie
             description.add("N'importe quoi "+String.valueOf(i));
         }
 */
-        listAdapter = new ListAdapter(this,id,titre,distance,description);
+        listAdapter = new ListAdapter(this,id,images,titre,distance,description);
         listView.setAdapter(listAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
