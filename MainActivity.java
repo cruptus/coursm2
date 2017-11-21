@@ -40,17 +40,17 @@ public class MainActivity extends AppCompatActivity {
         Fragment fragment = null;
         Class fragmentClass;
         switch(menuItem.getItemId()) {
-            case R.id.nav_first_fragment:
-                fragmentClass = FirstFragment.class;
+            case R.id.nav_camera:
+                fragmentClass = camera.class;
                 break;
-            case R.id.nav_second_fragment:
-                fragmentClass = SecondFragment.class;
+            case R.id.nav_gallery:
+                fragmentClass = gallery.class;
                 break;
-            case R.id.nav_third_fragment:
-                fragmentClass = ThirdFragment.class;
+            case R.id.nav_slideshow:
+                fragmentClass = slideshow.class;
                 break;
             default:
-                fragmentClass = FirstFragment.class;
+                fragmentClass = nav_camera.class;
         }
 
         try {
