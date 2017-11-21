@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="15dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MyHotel"
+        android:textColor="#000"
+        android:textSize="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:id="@+id/nav_home"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Home"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp" />
+    <TextView
+        android:id="@+id/nav_rooms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rooms"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp" />
+    <TextView
+        android:id="@+id/nav_activities"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Activites"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp" />
+    <TextView
+        android:id="@+id/nav_restaurant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Restaurant"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp" />
+    <TextView
+        android:id="@+id/nav_guide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guide"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp" />
+    <TextView
+        android:id="@+id/nav_concierge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Concierge"
+        android:textSize="20dp"
+        android:layout_marginBottom="10dp" />
+
+</LinearLayout>
