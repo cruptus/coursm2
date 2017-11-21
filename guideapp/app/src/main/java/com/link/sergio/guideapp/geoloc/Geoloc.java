@@ -92,8 +92,6 @@ public class Geoloc implements LocationListener {
      * Fonction getLatitude
      *
      * @return La latitude &agrave; laquelle se trouve le t&eacute;l&eacute;phone.
-     *
-     * @see getLonLat()
      */
     public double getLatitude() {
         return latitude;
@@ -103,8 +101,6 @@ public class Geoloc implements LocationListener {
      * Fonction getLongitude
      *
      * @return La longitude &agrave; laquelle se trouve le t&eacute;l&eacute;phone.
-     *
-     * @see getLonLat()
      */
     public double getLongitude() {
         return longitude;
@@ -142,9 +138,6 @@ public class Geoloc implements LocationListener {
      * Les valeurs num&eacute;riques de longitude et de latitude peuvent &ecirc;tre obtenues avec les fonctions getLatitude() et getLongitude().
      *
      * @return La longitude et l'altitude sous forme de texte au format JSON.
-     *
-     * @see getLongitude()
-     * @see getLatitude()
      */
     public String getLonLat() {
         return "{lon:" + this.longitude + ",lat:" + this.latitude + "}";
