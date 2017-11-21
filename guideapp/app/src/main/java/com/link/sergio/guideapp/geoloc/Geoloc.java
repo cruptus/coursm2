@@ -21,6 +21,11 @@ public class Geoloc implements LocationListener {
     private Geoloc() {
     }
 
+    /**
+     * Fonction getInstance
+     *
+     * @return L'instance du singleton.
+     */
     public Geoloc getInstance() {
         if(this.instance == null) {
             this.instance = new Geoloc();
@@ -51,22 +56,46 @@ public class Geoloc implements LocationListener {
 
     }
 
+    /**
+     * Fonction getLatitude
+     *
+     * @return La latitude à laquelle se trouve le téléphone.
+     */
     public double getLatitude() {
         return latitude;
     }
 
+    /**
+     * Fonction getLongitude
+     *
+     * @return La longitude à laquelle se trouve le téléphone.
+     */
     public double getLongitude() {
         return longitude;
     }
 
+    /**
+     * Fonction getAltitude
+     *
+     * @return L'altitude à laquelle se trouve le téléphone.
+     */
     public double getAltitude() {
         return altitude;
     }
 
+    /**
+     * Fonction getAccuracy
+     * @return La précision de la mesure.
+     */
     public float getAccuracy() {
         return accuracy;
     }
 
+    /**
+     * Fonction getStatus
+     *
+     * @return Le statut du provider.
+     */
     public int getStatus() {
         return status;
     }
@@ -74,9 +103,9 @@ public class Geoloc implements LocationListener {
     /**
      * Fonction getLonLat
      * Les valeurs numériques de longitude et de latitude peuvent être obtenues avec les fonctions getLatitude() et getLongitude().
+     *
      * @return La longitude et la atitude sous forme de texte au format JSON.
      */
-
     public String getLonLat() {
         return "{lon:" + this.longitude + ",lat:" + this.latitude + "}";
     }
