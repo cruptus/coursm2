@@ -31,9 +31,11 @@
             />
 
         <RelativeLayout
+            android:id="@+id/relativeLayoutSettingsCredits"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:clickable="true">
 
             <TextView
                 android:id="@+id/textViewSettingsCredits"
@@ -54,16 +56,17 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text=">"
-                android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textColor="#c6c6c6"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/relativeLayoutSettingsContactSupport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:clickable="true">
 
             <TextView
                 android:id="@+id/textViewSettingsContactsupport"
@@ -229,9 +232,11 @@
             />
 
         <RelativeLayout
+            android:id="@+id/relativeLayoutSettingsCacheFlush"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:clickable="true">
 
             <TextView
                 android:id="@+id/textViewSettingsCacheFlush"

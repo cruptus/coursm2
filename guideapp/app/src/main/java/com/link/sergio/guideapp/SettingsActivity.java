@@ -1,16 +1,18 @@
 package com.link.sergio.guideapp;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.io.File;
-import java.util.List;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -19,6 +21,46 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        RelativeLayout credits = (RelativeLayout) findViewById(R.id.relativeLayoutSettingsCredits);
+        RelativeLayout contactSupport = (RelativeLayout) findViewById(R.id.relativeLayoutSettingsContactSupport);
+        RelativeLayout flushCache = (RelativeLayout) findViewById(R.id.relativeLayoutSettingsCacheFlush);
+
+        credits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        contactSupport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        flushCache.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog alertDialog = new AlertDialog.Builder(SettingsActivity.this).create();
+                alertDialog.setTitle("Alerte");
+                alertDialog.setMessage("Voulez-vous supprimer les caches ?");
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Annuler",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                Toast.makeText(getApplicationContext(), "Vous-avez annuler !", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                deleteCache(getApplicationContext());
+                            }
+                        });
+                alertDialog.show();
+            }
+        });
 
         SharedPreferences sharedPref = this.getSharedPreferences("setting",Context.MODE_PRIVATE);
         String unite = sharedPref.getString("unite", null);
@@ -80,6 +122,26 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void createAlert(String title, String message) {
+        AlertDialog alertDialog = new AlertDialog.Builder(SettingsActivity.this).create();
+        alertDialog.setTitle(title);
+        alertDialog.setMessage(message);
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Annuler",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        Toast.makeText(getApplicationContext(), "Vous-avez annuler !", Toast.LENGTH_SHORT).show();
+                    }
+                });
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        //
+                    }
+                });
+        alertDialog.show();
     }
 
     public static void deleteCache(Context context) {
