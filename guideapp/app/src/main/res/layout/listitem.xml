@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/photo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/PhotoDistance"
+        android:layout_alignEnd="@+id/PhotoDistance"
+        android:layout_alignRight="@+id/PhotoDistance"
+        android:background="@mipmap/ic_launcher"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/PhotoDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="88dp"
+        android:text="2131Km"
+        android:textColor="@color/colorAccent"
+        android:background="#8000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="40dp" />
+
+    <TextView
+        android:id="@+id/PhotoTitre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/PhotoDescription"
+        android:layout_alignStart="@+id/PhotoDescription"
+        android:layout_alignTop="@+id/photo"
+        android:text="Titre"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.187"
+        app:layout_constraintStart_toEndOf="@+id/photo"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/PhotoDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="19dp"
+        android:layout_alignBottom="@+id/photo"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginStart="52dp"
+        android:layout_toEndOf="@+id/photo"
+        android:layout_toRightOf="@+id/photo"
+        android:text="ID luncher description"
+        app:layout_constraintStart_toStartOf="@+id/PhotoTitre"
+        app:layout_constraintTop_toBottomOf="@+id/PhotoTitre" />
+
+</RelativeLayout>
